@@ -1,1 +1,36 @@
 
+'''
+4 5
+4 3 2 7
+'''
+fr = []
+for o in range(0, int(input())):
+    nums = input().split(" ")
+    b = int(nums[0])
+    h = int(nums[1])
+    
+    nums = input().split(" ")
+    nums.sort(key=int, reverse=True)
+    
+    mink = int(nums[0])
+    th = b
+
+    s = 0
+    while th <= h and s < b:
+        n = s + 1
+        ec = 0
+        while n < b and int(nums[s]) == int(nums[n]):
+            ec += 1
+        
+        mink = int(nums[s])
+        
+        th += (ec + 1)
+        s += (ec + 1)
+    
+    
+    
+    fr.append(mink)
+        
+for xx in fr:
+    print(xx)
+    
