@@ -1,2 +1,2 @@
 # DSmax
-Some randome problems.
+Some random problems.
