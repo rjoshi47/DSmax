@@ -1,0 +1,102 @@
+'''
+Created on 25-Mar-2017
+
+@author: rjoshi
+'''
+import heapq
+class Board:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        
+    def in_bound(self, position):
+        (x, y) = position
+        return 0 <= x < self.width and 0 <= y < self.height
+    
+    def neighbors(self, id):
+        (x, y) = id
+        nbors = [(x-2, y-1), (x-2, y+1), 
+                 (x-1, y+2), (x+1, y+2),
+                 (x+2, y+1), (x+2, y-1),
+                 (x-1, y-2), (x+1, y-2)]
+        
+        return filter(self.in_bound, nbors)
+
+class PriorityQueue:
+    def __init__(self):
+        self.elements = []
+        
+    def empty(self):
+        return len(self.elements) == 0
+    
+    def put(self, item, priority):
+        heapq.heappush(self.elements, (priority, item))
+    
+    def get(self):
+        return heapq.heappop(self.elements)[1]
+
+def getPath(start, goal, came_from):
+    current = goal 
+    path = []
+    while current != start: 
+        path.append(current)
+        current = came_from[current]
+    path.append(start) # optional
+    path.reverse() # optional
+    return path
+
+def eqDistance(p, q):
+    (x1, y1) = p
+    (x2, y2) = q
+    return pow((x1-x2), 2) + pow((y1-y2), 2)
+    
+def stepsToTarget(board, start, goal):
+    frontier = PriorityQueue()
+    frontier.put(start, 0)
+    cost_so_far = {}
+    cost_so_far[start] = 0
+    came_from = {}
+    came_from[start] = None
+    
+    while not frontier.empty():
+        current = frontier.get()
+        if current == goal:
+            break
+        
+        for next in board.neighbors(current):
+            new_cost = cost_so_far[current] + 1
+            if next not in cost_so_far or new_cost <  cost_so_far[next]:
+                cost_so_far[next] = new_cost
+                came_from[next] = current
+                frontier.put(next, new_cost)
+    
+    return cost_so_far, came_from
+        
+#  
+# board = Board(2, 2)
+# start = (1,1)
+# target = (0,1)
+# (costs, path) = stepsToTarget(board, start , target)
+# print(costs[target])
+# print(getPath(start, target, path))
+ 
+fr = []
+for oo in range(0, int(input())):
+    n = int(input())
+    (x, y) = input().split(" ")
+    (p, q) = input().split(" ")
+       
+    board = Board(n, n)
+    start = (int(x)-1, int(y)-1)
+    target = (int(p)-1, int(q)-1)
+       
+    (costs, path) =  stepsToTarget(board, start , target)
+    #print(costs[target])
+    #print(getPath(start, target, path))
+    if target in costs:
+        fr.append(costs[target])
+    else:
+        fr.append(1)
+         
+for xx in fr:
+    print(xx)    
