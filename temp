@@ -3,3 +3,44 @@ Filter: https://practice.geeksforgeeks.org/tag-page.php?tag=Amazon&isCmp=1&level
 3. https://practice.geeksforgeeks.org/problems/combination-sum/0
 4. Distribute given sum among n beggers. (P&C)
 5. https://practice.geeksforgeeks.org/problems/champagne-overflow/0
+6. https://practice.geeksforgeeks.org/problems/next-permutation/0
+7. https://practice.geeksforgeeks.org/problems/overlapping-intervals/0
+
+'''
+Created on May 8, 2018
+
+@author: devuser
+
+'''    
+
+# nums = [(3,2), (1,4), (2,3)]
+# nums.sort(key=lambda x:x[0])
+# print(nums)
+
+res = []
+for _ in range(int(input())):
+    n = int(input())
+    nums = input().strip().split(" ")
+    intervals = []
+    for k in range(0,n,2):
+        intervals.append((int(nums[k]), int(nums[k+1])))
+    intervals.sort(key=lambda x:x[0])
+    
+    sheduledIntervals = []
+    b = 0
+    while b < len(intervals):
+        (s, e) = intervals[b]
+        sheduledIntervals.append(str(s))
+        sheduledIntervals.append(str(e))
+        while b+1 < len(intervals) and intervals[b+1][0] > s:
+            compatible = False
+            b += 1
+        b += 1
+    
+    res.append(" ".join(sheduledIntervals).strip())
+        
+for xx in res:
+    print(xx)
+    
+    
+    
