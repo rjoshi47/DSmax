@@ -7,7 +7,7 @@ We know in one roll we can get sum from 1 -> 6.
 So, no. of. ways to get 7 in 2 rolls = summation of sum(1,7-k) for 1 <= k <= min(m i.e no of faces, 7)
 sum(2,7) = sum(1,6) + sum(1,5) + ... + sum(1,1)
 similary:
-sum(3,9) = sum(2,8) + sum(2,7) + ... + sum(2,2) loop ends at m=6
+sum(3,9) = sum(2,8) + sum(2,7) + ... + sum(2,3) loop ends at m=6
 
 return sum[3][8]
 
