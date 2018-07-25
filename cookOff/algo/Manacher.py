@@ -2,6 +2,52 @@
 Created on 07-May-2017
 
 @author: rjoshi
+
+Finding longest or all palindrome in a string in O(n) 
+
+    Here we take advantage of the fact that palindromes are symmetric from center. 
+
+    For string B C B A B C B 
+
+        We start computing from left matching chars from center c and keeping track of r the right most boundary of the palindrome 
+
+        After preprocessing and reaching A we get: 
+
+            $ # B # C # B # A # B # C # B # @ 
+
+            0 0 1 0 3 0 1 0 7 
+
+                                  C                     R (boundary of palindrome) 
+
+            Now we can simply copy values mirror characters from C to R with given condition 
+
+            Mirror = 2*C – i 
+
+            If mirror < c: 
+
+            p[i] = min( p[mirror], R - i) // P[i] holds palindrome lengths from given character   
+
+            //Now we know p[i] is min length of palindrome from location i so we proceed matching after p[i] length 
+
+            While p[i + p[i] + 1] == p[I- (p[i]+1)]: 
+
+            P[i] += 1 
+
+            If p[i] + i > R:  
+
+            R = p[i] + I 
+
+            C = i  
+
+        Why min check is required 
+
+            $ # A # B # C # B # A # B # C # B # @ 
+
+            0 0 1 0 1 0 6 0 1 0 7 
+
+                                  C                      R 
+
+            Now we cannot copy mirror value for C but we know within boundary it will be a palindrome we go fir R - i.  
 '''
 
 def getLongestPalinLength(arrStr):
