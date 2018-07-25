@@ -17,7 +17,7 @@ Finding longest or all palindrome in a string in O(n)
 
             0 0 1 0 3 0 1 0 7 
 
-                                  C                     R (boundary of palindrome) 
+                            C               R (boundary of palindrome) 
 
             Now we can simply copy values mirror characters from C to R with given condition 
 
