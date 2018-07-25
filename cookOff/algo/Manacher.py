@@ -31,13 +31,13 @@ Finding longest or all palindrome in a string in O(n)
 
             While p[i + p[i] + 1] == p[I- (p[i]+1)]: 
 
-            P[i] += 1 
+                P[i] += 1 
 
             If p[i] + i > R:  
 
-            R = p[i] + I 
+                R = p[i] + I 
 
-            C = i  
+                C = i  
 
         Why min check is required 
 
