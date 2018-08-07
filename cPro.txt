@@ -53,15 +53,19 @@ Example case 2: GCD(95+15,9−1)=GCD(59050,8)=2
 
 
 
-The structure of the company ShareChat can be described by a simple graph (without multiedges and self-loops) with N vertices numbered 1 through N and M edges numbered 1 through M. Each vertex of this graph is part of at most one simple cycle.
+The structure of the company ShareChat can be described by a simple graph (without multiedges and self-loops) 
+with N vertices numbered 1 through N and M edges numbered 1 through M. 
+Each vertex of this graph is part of at most one simple cycle.
 
-For each edge, you should find the number of simple paths that contain this edge and only contain at most one edge which belongs to a cycle.
+For each edge, you should find the number of simple paths that contain this edge 
+and only contain at most one edge which belongs to a cycle.
 Input
 
     The first line of the input contains a single integer T denoting the number of test cases. 
     The description of T test cases follows. The first line of each test case contains two space-separated integers Nand M
 .
-M lines follow. For each valid i, the i-th of these lines contains two space-separated integers u and v, denoting the vertices connected by edge i
+M lines follow. For each valid i, the i-th of these lines contains two space-separated integers u and v, 
+denoting the vertices connected by edge i
 
 Output
 
