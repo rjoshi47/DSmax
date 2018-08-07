@@ -1,0 +1,35 @@
+At ShareChat, there are are plenty of interesting problems to solve. Here is one of them.
+
+Given integers A, B and N, you should calculate the GCD of AN+BN and |A−B|. (Assume that GCD(0,a)=a for any positive integer a). 
+Since this number could be very large, compute it modulo 1000000007 (109+7).
+Input
+
+
+Constraints
+  1≤T≤10
+  1≤A,B,N≤1012
+  B≤A
+
+Subtasks
+
+Subtask #1 (10 points): 1≤A,B,N≤10
+
+Subtask #2 (40 points): 1≤A,B,N≤106
+
+Subtask #3 (50 points): original constraints
+Example Input
+
+2
+10 1 1
+9 1 5
+
+Example Output
+
+1
+2
+
+Explanation
+
+Example case 1: GCD(101+11,10−1)=GCD(11,9)=1
+
+Example case 2: GCD(95+15,9−1)=GCD(59050,8)=2
