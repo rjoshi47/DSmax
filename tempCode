@@ -1,52 +1,62 @@
-def isPrime(n):
-    sq = int(pow(n, 0.5))
-    isPrime = True
-    for i in range(2, sq+1):
-        if n % i == 0:
-            isPrime = False
-            break
-    return isPrime
+# Python3 program to find GCD of 
+# two numbers such that the second
+# number can be very large.
 
-def getPrimesTillN(n):
-    pDict = {}
-    sq = int(pow(n, 0.5))
-    nonPrimes = 1
-    for i in range(2, sq+2):
-        if isPrime(i):
-            for p in range(i*2, n+1, i):
-                if p not in pDict:
-                    nonPrimes += 1
-                    pDict[p] = 1
-    return n - nonPrimes
 
-def getPrimeArr(n):
-    pDict = {}
-    primes = [1]*(n+1)
-    primes[0] = 0
-    sq = int(pow(n, 0.5))
-    for i in range(2, sq+2):
-        if isPrime(i):
-            for p in range(i*2, n+1, i):
-                if p not in pDict:
-                    pDict[p] = 1
-                    primes[p] = 0
-    print(primes)
-    count = 0
-    for i in range(0, len(primes)):
-        if primes[i] == 0:
-            count += 1
-        primes[i] = count
-    return primes
-
-n = 100
-print(getPrimeArr(n))
-print(getPrimesTillN(n))
-'''
-print("{0:b}".format(100000))
-fr = []
-for o in range(0, int(input())):
-    (l, r) = input().split(" ")
+# Function to find gcd
+# of two integer numbers
+def gcd(a, b) :
     
-    if l == r:
-        if isPrime(int(l)):
-'''
+    if (a == 0) :
+        return b
+        
+    return gcd(b % a, a)
+
+# Here 'a' is integer and 'b' is string.
+# The idea is to make the second number
+# (represented as b) less than and equal
+# to first number by calculating its mod
+# with first integer number using basic
+# mathematics
+def reduceB(a, b) :
+    
+    # Initialize result
+    mod = 0
+
+    # Calculating mod of b with a 
+    # to make b like 0 <= b < a
+    for i in range(0, len(b)) :
+        
+        mod = (mod * 10 + ord(b[i])) % a
+
+    return mod      # return modulo
+
+
+# This function returns GCD of
+# 'a' and 'b' where b can be
+# very large and is represented
+# as a character array or string
+def gcdLarge(a, b) :
+    
+    # Reduce 'b' (second number)
+    # after modulo with a
+    num = reduceB(a, b)
+
+    # gcd of two numbers
+    return gcd(a, num)
+
+
+# Driver program
+
+# First number which is integer
+a = 1221
+
+# Second number is represented
+# as string because it can not
+# be handled by integer data type
+b = "1234567891011121314151617181920212223242526272829"
+
+print(gcdLarge(a, b))
+
+
+# This code is contributed by Nikita Tiwari.
