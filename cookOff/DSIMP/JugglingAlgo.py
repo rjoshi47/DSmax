@@ -1,6 +1,8 @@
 '''
 Created on 22-Dec-2017
-
+the inner loop increments in steps of d, and stops when it gets back to the starting point, i.e. a total span which is some multiple of n. 
+That multiple is LCM(n, d). Thus the number of elements in that cycle is LCM(n, d) / d.
+The total number of such cycles is n / (LCM(n, d) / d), which is equal to GCD(n, d).
 @author: rjoshi
 '''
 def gcd(a, b):
