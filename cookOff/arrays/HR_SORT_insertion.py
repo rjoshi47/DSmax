@@ -1,6 +1,6 @@
 '''
 https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec03.pdf
-The idea is to keep array till k in insertioSort sorted, as in the original osrted array.
+The idea is to keep array till k sorted, as in the original sorted array.
 Start from k = 1 and find its position in already sorted array nums[0, k-1].
 The shift elements and store kth element at the position found using binary search.
 '''
