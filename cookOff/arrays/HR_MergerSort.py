@@ -12,8 +12,19 @@ Merge [2] [1] cond2 applied here and swaps required are: (1+1 - 1) - 0 =>1 (whic
 4213
 42 13
 4 2 1 3
-Merge [4] ] cond2 applied gives 1 inversion
-
+Merge [4] [2] cond2 applied gives 1 inversion
+Merge [1] [3] no inversion
+Merge LA = [2 4]  RA = [1 3]
+A = [2 4 1 3]
+2 > 1: cond2 1 inversion
+A = [1 4 1 3]
+2 < 3:
+A = [1 2 1 3] increment linv as the element from LA is choosen which means, 
+      now if any element from RA is choosen next them it is off from its position by (sizeof LA - linv) = (sizeofLA - 1) = 2-1 =1
+4 > 3:
+A = [1 2 3 3] # cond2 applied gives (2-1) = 1 inversion
+only 4 is remaining in LA
+A = [1 2 3 4] Overall 2 inversion
 '''
 def merge(A, l, mid, r):
     leftA = list(A[l:mid+1])
