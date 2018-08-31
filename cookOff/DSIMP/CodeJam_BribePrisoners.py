@@ -1,6 +1,17 @@
 '''
 Bribe the Prisoners
 https://code.google.com/codejam/contest/189252/dashboard#s=p2
+
+For prison with 10 cells we need to free 3,5,8
+1 2 3 4 5 6 7 8 9 10
+We divide the problem cosidering each prisoner to be release as a first prisoner to be release 
+and solve for left and right prison cells.
+
+Considering 3 as first prisoner to be released in (1,10) the gold cost will be:
+= (10 - 1) + solve(1,2) + solve(4,10)
+
+Similerly we do this for 5 and 8 also and return the min.
+Also, memoization is used.
 '''
 #prisonDict = {}
 def solve(releaseCells, l, r):
