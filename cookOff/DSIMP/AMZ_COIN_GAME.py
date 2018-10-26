@@ -3,6 +3,13 @@ Created on Apr 27, 2018
 
 @author: devuser
 https://practice.geeksforgeeks.org/problems/max-possible-amount/0
+
+Given a row of n coins of values v1 , v2 ... vn, where n is even. We play a game against an opponent by alternating turns. 
+In each turn, a player selects either the first or last coin from the row, removes it from the row permanently, 
+and receives the value of the coin. 
+Determine the maximum possible amount of money we can definitely win if we move first.
+
+
 DP with f: sub problem of picking max value with [i, j] coins
 
               vi + min(f(i+2,j), f(i+1, j-1)) if p1 choose ith coin then p2 will make sure that p1 will get 
