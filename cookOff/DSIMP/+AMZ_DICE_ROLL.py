@@ -24,6 +24,10 @@ def getCombinations(m, n, x):
         for j in range(1, x+1):
             for k in range(1, min(m,j)+1):
                     sumMat[i][j] += sumMat[i-1][j-k]
+                    '''
+                    for m = 6
+                    dp[2][10] = dp[1][6] + dp[1][5] + dp[1][4] here, k can go max 6 and hence stops at 4 [10-6] or [j-k]
+                    '''
             
     return sumMat[n][x]
     
