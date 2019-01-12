@@ -56,7 +56,13 @@ for _ in range(0, int(input())):
             smallOnLeft[i] = (s, nums[s])
     #print(smallOnLeft)
     
-    # the difference of indexes the range in which given is guranteed to be smallest
+    '''
+    # the difference of indexes is the range in which given element is guranteed to be smallest
+        10 20 30 50 10 70 30
+    [(7, 0), (4, 10), (4, 10), (4, 10), (7, 0), (6, 30), (7, 0)]
+    [(-1, 0), (0, 10), (1, 20), (2, 30), (-1, 0), (4, 10), (4, 10)]
+    70 30 20 10 10 10 10
+    '''
     fArr = [0]*(n+1)
     for k in range(0, n):
         rlen = smallOnRight[k][0] - smallOnLeft[k][0] - 1 
