@@ -1,6 +1,6 @@
 '''
 Created on 20-May-2018
-
+https://www.geeksforgeeks.org/number-groups-sizes-two-three-divisible-3/
 @author: rjoshi
 g0 - numbers with remainder 0
 g1 - numbers with remainder 1
