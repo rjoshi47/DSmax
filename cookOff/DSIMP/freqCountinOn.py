@@ -6,28 +6,27 @@ Using given array indexs to store the count
 
 '''
 
-def freqCount(arr):
-    n = len(arr)
-    
+def findCounts(arr, n): 
+      
+    # Traverse all array elements 
     i = 0
-    while i < n:
-        ci = i
-        cval = arr[ci]
-        
-        while cval > 0:
-            mi = (cval % (n-1))
-            mv = arr[mi]
-            arr[ci] = 0
-            if mv < 0:
-                arr[mi] -= 1
-                break
-            else:
-                cval = mv
-                arr[mi] = -1
-                
-        i += 1
-        
-    print(arr)
+    while i<n: 
+        if arr[i] <= 0: 
+            i += 1
+            continue
+        elementIndex = arr[i] - 1
+        if arr[elementIndex] > 0: 
+            arr[i] = arr[elementIndex] 
+            arr[elementIndex] = -1   
+        else: 
+            arr[elementIndex] -= 1
+            arr[i] = 0
+            i += 1
+  
+    print ("Below are counts of all elements") 
+    for i in range(0,n): 
+        print ("%d -> %d"%(i+1, abs(arr[i]))) 
+    print ("") 
     
 arr = [3, 1, 1, 3, 2]
 freqCount(arr)
