@@ -27,7 +27,7 @@ def getSmallestWindow(mainStr, subStr):
             count += 1
             
         if count == len(subStr):
-            
+            print(mainStr[start: i+1])
             iStr = ord(mainStr[start])
             while (matchedStrCountDict[iStr] > subStrCountDict[iStr]
                    or subStrCountDict[iStr] == 0):
@@ -47,5 +47,18 @@ mainStr = "this is a test string"
 subStr = "test"
 print(getSmallestWindow(mainStr, subStr))
 
-                
+'''
+this is a te
+this is a tes
+this is a test
+test 
+test s
+test st
+est str
+est stri
+est strin
+est string
+
+test
+'''
                 
