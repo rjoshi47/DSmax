@@ -2,6 +2,7 @@
 Created on 08-Jan-2018
 
 @author: rjoshi
+https://stackoverflow.com/questions/31086991/number-of-sub-sequences-of-a-given-array-that-are-divisible-by-n
 If we have a sequence p[1], p[2], ..., p[k] and know r, the remainder of the number p[1] p[2] ... p[k] modulo D, 
 and then add p[k+1] to the sequence,
 the remainder s of the new number p[1] p[2] ... p[k] p[k+1] modulo D is easy to compute: s = (r * 10 + p[k+1]) mod D.
