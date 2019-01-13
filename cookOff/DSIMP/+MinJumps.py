@@ -14,10 +14,13 @@ def getMinJumps(arr):
         if i == n-1:
             return jumps
         
+        # How far we can reach from arr[i] 
+        # It is possible that we are not actually on arr[i]
         maxReach = max(maxReach, i + arr[i])
         
         steps -= 1
         
+        # Even if maxReach is > n, we have to take a step to reach that element
         if steps == 0:
             jumps += 1
             # [3, 3, 6, 2, 9, 2, 6, 7, 2, 8, 9]
