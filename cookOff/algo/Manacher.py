@@ -14,14 +14,13 @@ Finding longest or all palindrome in a string in O(n)
         After preprocessing and reaching A we get: 
 
             $ # B # C # B # A # B # C # B # @ 
-
             0 0 1 0 3 0 1 0 7 
 
                             C               R (boundary of palindrome) 
 
             Now we can simply copy values mirror characters from C to R with given condition 
 
-            Mirror = 2*C – i 
+            mirror = 2*C – i 
 
             If mirror < c: 
 
@@ -29,23 +28,21 @@ Finding longest or all palindrome in a string in O(n)
 
             //Now we know p[i] is min length of palindrome from location i so we proceed matching after p[i] length 
 
-            While p[i + p[i] + 1] == p[I- (p[i]+1)]: 
+            While p[i + p[i] + 1] == p[i- (p[i]+1)]: 
 
                 P[i] += 1 
 
             If p[i] + i > R:  
 
-                R = p[i] + I 
+                R = p[i] + i 
 
                 C = i  
 
         Why min check is required 
 
             $ # A # B # C # B # A # B # C # B # @ 
-
             0 0 1 0 1 0 6 0 1 0 7 
-
-                                  C                      R 
+                                C                      R 
 
             Now we cannot copy mirror value for C but we know within boundary it will be a palindrome we go fir R - i.  
 '''
