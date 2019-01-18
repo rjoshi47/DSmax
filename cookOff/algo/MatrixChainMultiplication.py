@@ -1,6 +1,6 @@
 '''
 Created on 10-Sep-2017
-
+https://www.radford.edu/~nokie/classes/360/dp-matrix-parens.html
 @author: rjoshi
 M[i][j] = min{ M[i][k] + M[k+1][j] + P(i-1)P(k)P(j) } for i <=k < j
 '''
