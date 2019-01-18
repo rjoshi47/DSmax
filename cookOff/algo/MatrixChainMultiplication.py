@@ -43,3 +43,96 @@ def getMutiplySeq(i,j):
         return '('+x+','+y+')'
     
 print(getMutiplySeq(1, 6))
+/**********************************JAVA********************************************************************/
+package cookJava;
+
+import java.util.Scanner;
+
+public class MatrixMultiply
+{
+	public static void main(String jj[])
+	{
+		Scanner sc = new Scanner(System.in);
+		String[] Ps = sc.nextLine().split(" ");
+		sc.close();
+
+		int n = Ps.length;
+		int[] P = new int[n];
+		for (int i = 0; i < n; i++)
+			P[i] = Integer.valueOf(Ps[i]);
+
+		int[][] mat = new int[n][n];
+		int[][] pos = new int[n][n];
+
+		for (int d = 1; d < n; d++)
+		{
+			int t = d + 1;
+			for (int i = 1; i < n - d; i++)
+			{
+				int mv = 0;
+				int minv = Integer.MAX_VALUE;
+				int mink = Integer.MAX_VALUE;
+				for (int k = i; k < t; k++)
+				{
+					mv = mat[i][k] + mat[k + 1][t] + P[i - 1] * P[k] * P[t];
+					if (mv < minv)
+					{
+						minv = mv;
+						mink = k;
+					}
+				}
+				mat[i][t] = minv;
+				pos[i][t] = mink;
+				t += 1;
+			}
+		}
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+				System.out.print(mat[i][j] + " ");
+			System.out.println();
+		}
+		
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+				System.out.print(pos[i][j] + " ");
+			System.out.println();
+		}
+		System.out.println("");
+		getBrackets(pos, 1, n-1);
+	}
+	
+	private static void getBrackets(int[][] p, int i, int j) 
+	{
+		if (i == j)
+			System.out.print("A"+i);
+		else 
+		{
+			System.out.print("(");
+			getBrackets(p, i, p[i][j]);
+			getBrackets(p, p[i][j]+1, j);
+			System.out.print(")");
+		}
+	}
+}
+
+/*
+2 3 5 2 4 3
+
+0 0 0 0 0 0 
+0 0 30 42 58 78 
+0 0 0 30 54 72 
+0 0 0 0 40 54 
+0 0 0 0 0 24 
+0 0 0 0 0 0 
+
+0 0 0 0 0 0 
+0 0 1 1 3 3 
+0 0 0 2 3 3 
+0 0 0 0 3 3 
+0 0 0 0 0 4 
+0 0 0 0 0 0 
+
+((A1(A2A3))(A4A5))
+*/
