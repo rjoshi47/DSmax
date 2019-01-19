@@ -10,7 +10,8 @@ Maintain a window of 5
 1. 2 3 4 2 3 -> sorted -> 2 2 3 3 4 median:3, next element is 6>=2*3 so +1 notification
 2. 3 4 2 3 6 -> sorted -> 2 3 3 4 6 median:3, next element is 8>=2*3 so +1 notification.
 
-To get median of fixed sized windows we use sub-routine of count-sort where we maintain the frequency array for elements in given window.
+To get median of fixed sized windows we use sub-routine of count-sort where we maintain 
+the frequency array for elements in given window.
 Based on window position we increment and decrement the element count in frequency array.
 
 Then we create a prefix sum array preCount which will store the position of the element with index value.
