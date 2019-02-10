@@ -1,0 +1,44 @@
+
+Given a time in hours and minutes, find the angle between hours and minutes pointers in analog clock.
+Given two arrays of equal size. First Array represents in the arrival timings of trains and second array represents the departure timings of the same trains.
+
+Given an array containing integers, in which the elements are repeated multiple times.
+Now sort the array wrt the frequency of numbers.
+
+eg:	i/p: 2, 4, 5, 2, 1, 9, 3, 2, 2, 5, 1, 5
+	o/p: 2, 2, 2, 2, 5, 5, 5, 1, 1, 4, 3, 9
+	
+https://www.geeksforgeeks.org/deadlock-in-java-multithreading/
+
+Design an LRU(Least Recently Used) Cache.
+
+https://www.careercup.com/question?id=5742589715152896
+
+https://www.careercup.com/question?id=4783236498587648
+
+https://www.careercup.com/page?pid=salse-force-interview-questions
+
+Design a file system https://www.careercup.com/question?id=5110235812331520
+Design a text editor
+
+
+https://www.quora.com/What-is-the-Salesforce-2-hour-remote-programming-test-2nd-round-interview-like
+https://www.geeksforgeeks.org/salesforce-interview-experience-mts-set-4-6-5-years-experience/
+
+
+
+ -write program to calculate power(x,n) in log(n) time
+  -Given an array, which contains integers in the range of 1 to n. one number is missing from it and one number is repeated in array. for ex -- array is {1,2,3,4,4,6,7,8,9} , range given is 1- n(n=9).
+   -Puzzle- Find minimum floor from which a tt ball will break, if there are 100 floor and 2 tt balls
+    -  Find one/twomissing number in 1-n numbers
+  -  Develop and run a program which has 2 arrays of any length with a set of negative,zero and positive numbers and a sum was provided. In the complexity o(n) identify the indexes of both the arrays whose sum of values form the given sum.   
+- Given an array of integers where each element represents the max number of steps that can be made forward from that element.
+ -Given two sorted arrays of integers, A and B, find the set of n largest numbers where each number is the sum of an integer from A and an integer from B.   
+ - Simple algorithms and finding diagnol elements in a binary tree  
+
+ - Find if a binary tree is balanced or not.
+- https://practice.geeksforgeeks.org/problems/stock-buy-and-sell/0 
+https://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/
+.You are a given an integer .You have to print all the possible valid parenthesis for this integer.
+For eg for n=2,we have o/p= ()() ,(()),etc
+   Given an array containing positive and negative numbers, find all the sub arrays in it, whose sum is equal to zero.
