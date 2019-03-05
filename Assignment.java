@@ -50,7 +50,7 @@ public class Assignment
 	{
 		Assignment.printMaxSumSubarrayProperties(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 });
 		Assignment.printMaxSumSubarrayProperties(new int[] { -1, -1, 12, -4, 6, -3, 4, -3, 3, 1, -1 });
-		// Single +ve int in array
+		// Single number in max sum sub-array
 		Assignment.printMaxSumSubarrayProperties(new int[] { 1, -2, 12, -4, -6, 3 });
 		// All -ve values
 		Assignment.printMaxSumSubarrayProperties(new int[] { -1, -1, -12, -4, -6, -3 });
