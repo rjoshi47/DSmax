@@ -56,5 +56,7 @@ public class Assignment
 		Assignment.printMaxSumSubarrayProperties(new int[] { -1, -1, -12, -4, -6, -3 });
 		// All +ve values
 		Assignment.printMaxSumSubarrayProperties(new int[] { 1, 2, 3, 4, 5 });
+		// Single element in array
+		Assignment.printMaxSumSubarrayProperties(new int[] { 10 });
 	}
 }
