@@ -12,6 +12,39 @@ DD
 IIDDD
 DDIDDIID
 
+static String numberFollowingPattern(String input) {
+		if (input == null || input.isEmpty())
+		    return "";
+			
+		int inputSize = input.length();
+		int outputSize = inputSize + 1;
+		StringBuilder sb = new StringBuilder(outputSize);
+		char currentChar = input.charAt(0);
+		// Starting point is always the same II => '12' || DD => '21'
+		int maxIndex = -1;
+		if (currentChar == 'I') {
+			sb.append("12");
+			maxIndex = 1;
+		} else { // currentChar == 'D'
+			sb.append("21");
+			maxIndex = 0;
+		}
+		int next = 3;
+		// Append next char according to pattern
+		for(int i = 1; i < inputSize; i++) {
+			currentChar = input.charAt(i);
+			if (currentChar == 'I') {
+				sb.append(next);
+				maxIndex = sb.length() - 1;
+			} else {
+				sb.insert(maxIndex, next);
+			}
+			next++;
+		}
+		
+		return sb.toString();
+	}
+
 '''
 
 res = []
