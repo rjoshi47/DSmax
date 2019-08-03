@@ -38,40 +38,21 @@ Diagonal form
 
 (0,3)
 '''
-def getMaxPick(maxPicks, nums):
-    n = len(nums)
-    for k in range(0, n):
-        i = 0
-        j = k
-        while j < n:
-            fi2j = maxPicks[i+2][j] if i+2 <= j else 0
-            fi1jm1 = maxPicks[i+1][j-1] if i+1 <= j-1 else 0
-            fijm2 = maxPicks[i][j-2] if i <= j-2 else 0
+for _ in range(int(input().strip())):
+    n = int(input().strip())
+    nums = list(map(int, input().strip().split(" ")))
+        
+    p = [[0 for j in range(n)] for i in range(n)]
+    for i in range(n):
+        k = i
+        for j in range(n - i):
+            ip1jm1 = p[j + 1][k - 1] if j + 1 <= k - 1 else 0
+            ip2j = p[j + 2][k] if j + 2 <= k else 0
+            ijm2 = p[j][k - 2] if j <= k - 2 else 0
             
-            picki = nums[i] + min(fi2j, fi1jm1)
-            pickj = nums[j] + min(fijm2, fi1jm1)
-            
-            maxPicks[i][j] = max(picki, pickj)
-            
-            j += 1
-            i += 1
-            
-    return maxPicks[0][n-1]
-
-for _ in range(0, int(input())):
-    n = input()
-    inums = input().split(" ")
-    nums = []
-    for k in range(0, len(inums)):
-        if len(inums[k]) > 0:
-            nums.append(int(inums[k]))
-    n = len(nums)
-    maxPicks = [[0 for j in range(0, n)] for i in range(0, n)]
-    #print(maxPicks)
-    l = 0
-    r = len(nums) - 1
-    res.append(getMaxPick(maxPicks, nums))
+            p[j][k] = max(nums[j] + min(ip1jm1, ip2j), nums[k] + min(ip1jm1, ijm2))
+            k += 1
+    res.append(p[0][n-1])
     
 for xx in res:
     print(xx)
-    
