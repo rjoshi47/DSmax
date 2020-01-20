@@ -6,3 +6,27 @@ Filter: https://practice.geeksforgeeks.org/tag-page.php?tag=Amazon&isCmp=1&level
 6. https://practice.geeksforgeeks.org/problems/next-permutation/0
 9. https://practice.geeksforgeeks.org/problems/form-a-palindrome/0 
 10. https://practice.geeksforgeeks.org/problems/egg-dropping-puzzle/0
+
+'''
+Created on Jan 20, 2020
+
+@author: rj250201
+'''
+
+def overflow(nums, idx, cap):
+    #print(nums, idx, cap)
+    if cap <= 0:
+        return
+    elif nums[idx] == 1:
+        overflow(nums, idx*2 + 1, cap/2)
+        overflow(nums, idx*2 + 2, cap/2)
+    elif nums[idx] + cap > 1:
+        overflow(nums, idx*2 + 1, (nums[idx] + cap - 1)/2)
+        overflow(nums, idx*2 + 2, (nums[idx] + cap - 1)/2)
+        nums[idx] = 1
+    else:
+        nums[idx] += cap
+
+nums = [0]*50  
+overflow(nums, 1, 5)
+print(nums)
