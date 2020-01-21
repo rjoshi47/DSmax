@@ -8,25 +8,35 @@ Filter: https://practice.geeksforgeeks.org/tag-page.php?tag=Amazon&isCmp=1&level
 10. https://practice.geeksforgeeks.org/problems/egg-dropping-puzzle/0
 
 '''
-Created on Jan 20, 2020
+Created on 21-Jan-2020
 
-@author: rj250201
+@author: rjoshi
 '''
 
-def overflow(nums, idx, cap):
-    #print(nums, idx, cap)
-    if cap <= 0:
-        return
-    elif nums[idx] == 1:
-        overflow(nums, idx*2 + 1, cap/2)
-        overflow(nums, idx*2 + 2, cap/2)
-    elif nums[idx] + cap > 1:
-        overflow(nums, idx*2 + 1, (nums[idx] + cap - 1)/2)
-        overflow(nums, idx*2 + 2, (nums[idx] + cap - 1)/2)
-        nums[idx] = 1
-    else:
-        nums[idx] += cap
-
-nums = [0]*50  
-overflow(nums, 1, 5)
-print(nums)
+def maxHeight(l, w, h, n):
+    boxes = []
+    for i in range(n):
+        boxes.append((l[i], w[i], h[i]))
+        boxes.append((l[i], h[i], w[i]))
+        boxes.append((w[i], h[i], l[i]))
+    
+    print(boxes)  
+    boxes = sorted(boxes, key=lambda x: x[0]*x[1], reverse=True)
+    print(boxes)  
+    
+    n = len(boxes)
+    
+    arrange_max = [0]*n
+    for i in range(n):
+        arrange_max[i] = boxes[i][2]
+    
+    print(arrange_max) 
+    for i in range(0, n-1):
+        for j in range(i+1, n):
+            if boxes[i][0] > boxes[j][0] and boxes[i][1] > boxes[j][1]:
+                arrange_max[j] = max(arrange_max[j], arrange_max[j] + boxes[i][2])
+        print(arrange_max) 
+    
+              
+    
+maxHeight([4,5], [2,3], [1,2], 2)
