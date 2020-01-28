@@ -7,34 +7,47 @@ Filter: https://practice.geeksforgeeks.org/tag-page.php?tag=Amazon&isCmp=1&level
 9. https://practice.geeksforgeeks.org/problems/form-a-palindrome/0 
 10. https://practice.geeksforgeeks.org/problems/egg-dropping-puzzle/0
 '''
-Created on Jan 23, 2020
+Created on 28-Jan-2020
+https://practice.geeksforgeeks.org/problems/word-break/0
 
-@author: rj250201
+dp[i][j] = if word[i..j] can be split and each word is found in dictionary
+        
+                1         if word[i..j] is in dictionary
+dp[i][j] = {    1         if word[i..k] and word[k...j] both are in dictionary
+                0         Otherwise
+@author: rjoshi
 '''
-
-def get_max_profit(nums, k):
-    nums = [0]+nums
-    n = len(nums)
-    dp = [[0 for i in range(n)] for j in range(k+1)]
+def break_word(dict_main, word):
+    n = len(word)
+    dp = [[(0, 0) for i in range(n)] for j in range(n)]
     
-    #for i in range(1, k+1):
-    #    dp[i][i] = nums[i]
-    '''
-    i - transaction
-    j - days
-    '''    
-    for i in range(1, k+1):
-        for j in range(1, n):
-            max_profit_j = 0
-            for m in range(0, j):
-                max_profit_j = max(max_profit_j, nums[j] - nums[m] + dp[i-1][m])
-            dp[i][j] = max(max_profit_j, dp[i][j-1])
+    for k in range(n):
+        for i in range(n-k):
+            #print(word[i: i+k+1], end = " ")
+            if word[i: i+k+1] in dict_main:
+                dp[i][i+k] = (1, -1)
+            else:
+                for p in range(i, i+k):
+                    if dp[i][p][0] + dp[p+1][i+k][0] == 2:
+                        dp[i][i+k] = (1, p)
+                        break
     
-    for i in range(k+1):
+    for i in range(n):
         print(dp[i])
+    return dp[0][n-1]
 
-get_max_profit([10, 22, 5, 75, 65, 80], 3)
+res = []
+for _ in range(int(input())):
+    n = int(input())
+    dict_words = input().split(" ")
+    word = input()
     
-              
+    dict_main = {}
+    for i in range(len(dict_words)):
+        if len(dict_words[i]) > 0:
+            dict_main[dict_words[i]] = i
     
-maxHeight([4,5], [2,3], [1,2], 2)
+    res.append(break_word(dict_main, word))
+
+for xx in res:
+    print(xx)
