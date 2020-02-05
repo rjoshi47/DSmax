@@ -51,3 +51,55 @@ for _ in range(int(input())):
 
 for xx in res:
     print(xx)
+
+
+'''
+Created on 05-Feb-2020
+
+@author: rjoshi
+'''
+class Board:
+    def __init__(self, r, c):
+        self.r = r
+        self.c = c
+    
+    def in_bound(self, idx):
+        (x, y) = idx
+        return 0 <= x < self.r and 0 <= y < self.c
+    
+    def next_nodes(self, idx):
+        (x, y) = idx
+        results = [(x-2, y-1), (x-2, y+1), (x-1, y+2), (x+1, y+2), (x+2, y+1), (x+2, y-1), (x+1, y-2), (x-1, y-2)]
+        return list(filter(self.in_bound, results))
+    
+def lets_move(Board, start, k):
+    k_queue = []
+    move_so_far = {}
+    prop_so_far = {}
+    
+    k_queue.append(start)
+    move_so_far[start] = 0
+    prop_so_far[(start, 0)] = 1
+    
+    while len(k_queue) != 0:
+        curr = k_queue.pop()
+        
+        if move_so_far[curr] < k:
+            for next_pos in Board.next_nodes(curr):
+                new_k = 1 + move_so_far[curr]
+                move_so_far[next_pos] = new_k
+                if (next_pos, new_k) not in prop_so_far:
+                    prop_so_far[(next_pos, new_k)] = prop_so_far[(curr, new_k-1)]/8
+                else:
+                    prop_so_far[(next_pos, new_k)] += prop_so_far[(curr, new_k-1)]/8
+                k_queue.append(next_pos)
+    r = 0
+    for ((pos, n_k), v) in prop_so_far.items():
+        if n_k == k:
+            r += v
+    print(r)
+    #print(prop_so_far)
+    #print(iam_in)
+            
+
+lets_move(Board(5,5), (0,0), 3)
