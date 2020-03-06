@@ -1,62 +1,195 @@
-# Python3 program to find GCD of 
-# two numbers such that the second
-# number can be very large.
+package GFG;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class GFG {
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t>0) {
+			int x = sc.nextInt();
+			String[] dict = new String[x];
+			for(int i=0; i<x; i++) {
+				dict[i] = sc.next();
+			}
+			
+			Arrays.parallelSort(dict);
+			
+			int m = Integer.parseInt(sc.next());
+			int n = Integer.parseInt(sc.next());
+			
+			char board[][] = new char[m][n];
+			for(int i=0; i<m; i++) {
+				for(int j=0; j<n; j++) {
+					board[i][j] = sc.next().charAt(0);
+				}
+			}
+			
+			Solution T = new Solution();
+			T.wordBoggle2(board, dict);
+			
+			t--;
+		}
+	}
+}
+
+class Solution {
+	class Tuple {
+		Integer i;
+		Integer j;
+		Map<Tuple , Integer> map = new HashMap<Tuple , Integer>();
+		String word = "";
+		public Tuple(Integer i, Integer j) {
+			super();
+			this.i = i;
+			this.j = j;
+		}
+		public int i() {
+			return (int)i;
+		}
+		public int j() {
+			return (int)j;
+		}
+		public Map<Tuple , Integer> getMap() {
+			return map;
+		}
+		public void setMap(Map<Tuple , Integer> map) {
+			this.map = map;
+		}
+		public String getWord() {
+			return word;
+		}
+		public void setWord(String word) {
+			this.word = word;
+		}
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((i == null) ? 0 : i.hashCode());
+			result = prime * result + ((j == null) ? 0 : j.hashCode());
+			return result;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Tuple other = (Tuple) obj;
+			
+			if (i == null) {
+				if (other.i != null)
+					return false;
+			} else if (!i.equals(other.i))
+				return false;
+			if (j == null) {
+				if (other.j != null)
+					return false;
+			} else if (!j.equals(other.j))
+				return false;
+			
+			return true;
+		}
+
+	}
+	
+	public List<String> wordBoggle2(char board[][], String[] dictionary) {
+		int r = board.length;
+		int c = board[0].length;
+		Map<String, Integer> dict = new HashMap<String, Integer>();
+		for(String ds: dictionary) {
+			dict.put(ds.charAt(0)+"", 1);
+		}
+		for(int i=0; i<r; i++) { 
+			for(int j=0; j<c; j++) { 
+				if(dict.containsKey(board[i][j]+"")) {
+					System.out.println(board[i][j]+" "+i+", "+j);
+					wordBoggle(board, dictionary, i, j);
+					break;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public List<String> wordBoggle(char board[][], String[] dictionary, int q, int w) {
+		int r = board.length;
+		int c = board[0].length;
+		List<String> res = new ArrayList<String>();
+		
+		Map<String, Integer> dict = new HashMap<String, Integer>();
+		for(int i=0; i<dictionary.length; i++) {
+			dict.put(dictionary[i], 1);
+		}
+		
+		List<Tuple > front = new ArrayList<Tuple >();
+		Map<Tuple , Integer> visited = new HashMap<Tuple , Integer>();
+		
+		Tuple  start = new Tuple (q, w);
+		
+		visited.put(start, 1);
+		start.setMap(visited);
+		start.setWord(board[start.i()][start.j()]+"");
+		
+		front.add(start);
+		
+		while( front.size() > 0) {
+			Tuple  curr = front.remove(0);
+			Map<Tuple , Integer> c_map = curr.getMap();
+			String c_word = curr.getWord();
+			
+			if (dict.containsKey(c_word)) {
+				System.out.println(c_word);
+				res.add(c_word);
+			} else {
+				int i = curr.i();
+				int j = curr.j();
+				
+				List<Tuple > n_bors = new ArrayList<Tuple >();
+				n_bors.add(new Tuple (i - 1, j - 1));
+				n_bors.add(new Tuple (i - 1, j));
+				n_bors.add(new Tuple (i - 1, j + 1));
+				
+				n_bors.add(new Tuple (i, j - 1));
+				n_bors.add(new Tuple (i, j + 1));
+
+				n_bors.add(new Tuple (i + 1, j - 1));
+				n_bors.add(new Tuple (i + 1, j));
+				n_bors.add(new Tuple (i + 1, j + 1));
+				
+				n_bors = n_bors.stream().filter(t -> (t.i() >= 0 && t.j() >= 0 && t.i() < r && t.j() < c)).collect(Collectors.toList());
+
+				for (Tuple  nb : n_bors) {
+					Map<Tuple , Integer> n_map = new HashMap<Tuple , Integer>();
+					String n_word = c_word + board[nb.i()][nb.j()];
+					n_map.putAll(c_map);
+					n_map.put(nb, 1);
+					nb.setMap(n_map);
+					nb.setWord(n_word);
+					front.add(nb);
+				}
+			}
+		}
+		
+		return res;
+    }
+}
 
 
-# Function to find gcd
-# of two integer numbers
-def gcd(a, b) :
-    
-    if (a == 0) :
-        return b
-        
-    return gcd(b % a, a)
-
-# Here 'a' is integer and 'b' is string.
-# The idea is to make the second number
-# (represented as b) less than and equal
-# to first number by calculating its mod
-# with first integer number using basic
-# mathematics
-def reduceB(a, b) :
-    
-    # Initialize result
-    mod = 0
-
-    # Calculating mod of b with a 
-    # to make b like 0 <= b < a
-    for i in range(0, len(b)) :
-        
-        mod = (mod * 10 + ord(b[i])) % a
-
-    return mod      # return modulo
 
 
-# This function returns GCD of
-# 'a' and 'b' where b can be
-# very large and is represented
-# as a character array or string
-def gcdLarge(a, b) :
-    
-    # Reduce 'b' (second number)
-    # after modulo with a
-    num = reduceB(a, b)
-
-    # gcd of two numbers
-    return gcd(a, num)
 
 
-# Driver program
-
-# First number which is integer
-a = 1221
-
-# Second number is represented
-# as string because it can not
-# be handled by integer data type
-b = "1234567891011121314151617181920212223242526272829"
-
-print(gcdLarge(a, b))
 
 
-# This code is contributed by Nikita Tiwari.
+
+
